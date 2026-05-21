@@ -1,0 +1,115 @@
+{
+    "reload_style_on_change": true,
+    "layer": "top",
+    "position": "bottom",
+    "height": 48,
+    "exclusive": true,
+    "gtk-layer-shell": true,
+    // "output": "DP-1",
+    /* === Modules Order === */
+    "modules-left": [
+        "custom/power",
+        "clock",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "custom/submap",
+        "custom/hyprvim.cmdbuf"
+    ],
+    "modules-right": [
+        "wlr/taskbar",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory"
+    ],
+    /* === Modules Left === */
+    "custom/power": {
+        "format": "",
+        "on-click": "pidof wlogout || wlogout -b 4 -L 200 -R 200 -T 375 -B 375",
+        "tooltip": false
+    },
+    "clock": {
+        "timezone": "Europe/London",
+        "format": "{:%H:%M}",
+        "tooltip-format": "{calendar}",
+        "calendar": {
+            "mode": "month"
+        }
+    },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate"
+    },
+    /* === Modules Center === */
+    "custom/submap": {
+        "exec": "cat /tmp/hypr_submap",
+        "return-type": "json",
+        "signal": 8,
+        "format": "{}",
+        "on-click": "hyprctl dispatch hl.dsp.submap('Normal')"
+    },
+    "custom/hyprvim.cmdbuf": {
+        "exec": "cat /tmp/hyprvim_state",
+        "return-type": "json",
+        "signal": 9,
+        "format": "{}",
+        "on-click": "hyprctl dispatch hl.dsp.submap('Normal')"
+    },
+    "mpris": {
+        "format": "{player_icon} {artist} - {title}",
+        "format-paused": "{status_icon} <i>{artist} - {title}</i>",
+        "ignored-players": [
+            "chromium",
+            "firefox"
+        ],
+        "max-length": 35,
+        "player-icons": {
+            "default": "🎵",
+            "mpv": "🎵"
+        },
+        "status-icons": {
+            "paused": "⏸"
+        }
+    },
+    /* === Modules Right === */
+    "wlr/taskbar": {
+        "all-outputs": true,
+        "format": "{icon}",
+        "tooltip-format": "{name}",
+        "on-click": "activate",
+        "ignore-list": [
+            "rofi"
+        ]
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " {format_source}",
+        "format-icons": {
+            "default": [
+                "",
+                ""
+            ]
+        }
+    },
+    "network": {
+        "format": "{ifname}",
+        "format-ethernet": "󰈀",
+        "format-disconnected": " ",
+        "tooltip-format-ethernet": " {ifname} {ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "  Disconnected",
+        "max-length": 50
+    },
+    "cpu": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "ghostty --command='btop'"
+    },
+    "memory": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "ghostty --command='btop'"
+    }
+}
